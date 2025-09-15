@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const tourRouter = require("./routes/tourRouter");
 const userRouter = require("./routes/userRouter");
-const { unknownEndpoint } = require("./middleware/customMiddleware");
 const connectDB = require("./config/db"); 
 const { unknownEndpoint, errorHandler } = require("./middleware/customMiddleware");
 const morgan = require("morgan");
