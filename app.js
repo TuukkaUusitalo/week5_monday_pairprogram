@@ -10,8 +10,13 @@ const port = process.env.PORT || 4000;
 connectDB();
 //...
 
-const morgan = require("morgan");
 app.use(morgan("dev"));
+
+// Use the unknownEndpoint middleware for handling undefined routes
+app.use(unknownEndpoint);
+
+// Use the errorHandler middleware for handling errors
+app.use(errorHandler);
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -36,5 +41,12 @@ app.use(errorHandler);
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
+});
+
+// Example route that throws an error
+app.get('/error', (req, res, next) => {
+  // Trigger an error
+  const error = new Error("Network problem");
+  next(error);
 });
  
