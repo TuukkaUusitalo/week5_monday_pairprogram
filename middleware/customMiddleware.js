@@ -3,12 +3,14 @@ const unknownEndpoint = (request, response) => {
 };
 
 const errorHandler = (error, request, response, next) => {
-  console.error(error.message);
+   console.error(error.message);
 
   response.status(500).json({
     message: "Something went wrong!",
   });
 };
+
+ 
 
 const requestLogger = (request, response, next) => {
   console.log("Method:", request.method);
@@ -19,7 +21,6 @@ const requestLogger = (request, response, next) => {
 };
  
 module.exports = {
-  requestLogger,
   unknownEndpoint,
   errorHandler,
 };
